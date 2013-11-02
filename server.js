@@ -14,6 +14,10 @@ app.get('/', function(req, res){
   res.render('index_template', {});
 });
 
+app.get('/cubism', function(req, res){
+    res.render('cubism_template', {})
+})
+
 var port = process.env.PORT || 5000;
 
 
