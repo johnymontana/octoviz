@@ -135,28 +135,26 @@
 	</div> <!-- /.tab-pane -->
 
 	<div class="tab-pane fade" id="vis_1">
-	  <h3>Fatality heatmap of militarized inter-state disputes 1816-2001</h3>
-	   Source: Correlates of War <a href="http://www.correlatesofwar.org/COW2%20Data/MIDLOC/MIDLOC_v1.1.html">MIDLOC v1.1 </a> and <a href="http://www.correlatesofwar.org/COW2%20Data/MIDs/MID310.html">MID v3.10</a>
+	  <h3>Real-time starred repositories by language</h3>
+      Source: <a href="http://developer.github.com/v3/activity/events/">Github Events API v3</a>
 	  <p><iframe style="border: 0px;" src="/realtime" height=1000 width=1000 scrolling="yes"></iframe></p>
 	  <div class="panel panel-primary">
 	    <div class="panel-heading">
 	      <h3 class="panel-title">About Visual #1</h3>
 	    </div>
 	    <div class="panel-body">
-	      <h4>Dataset</h4>
-	      <p>This visual makes use of the Correlates of War Militarized Interstate Dispute Dataset v3.10 (MID) and the Militarized Interstate Dispute Location Dataset v1.1 (MIDLOC). The MID dataset contains data on inter-state disputes from 1816-2001, including the level of battle related fatalities suffered by all states (combined). The levels are None, 1-25, 26-100, 101-250, 251-500, 501-999 and more than 999 deaths. Precise fatality data is sparse for this dataset and threfore was not used. The MIDLOC dataset contains the precise longitude and latitude of the onset of most disputes in the MID dataset (location data is available for 2240 of the 2332 disputes contained in the MID dataset. Observations lacking location data and/or fatality data are excluded.</p>
-	      <h4>Fatality heatmap</h4>
-	      <p>This visual uses a heatmap overlay to highlight battle related fatality levels throughout the world. The value of each pixel displayed on the map is defined by its distance to a point that holds data (in this case fatality level for a dispute): \(v=\sum{f_{i} - s*d^w}\) where \(v\) = value of the pixel, \(f_i\) = fatality level for observation \(i\), \(d\) = distance from observation \(i\),  \(s\)=0.1 , and \(w\) = 3. The color of the pixel is then determined from the value \(v\) by a color scheme function. </p>
-	      <h4>Dispute markers</h4>
-	      <p>Map annotations are plotted for each dispute showing summary information. An annotation clustering library is used to help manage overlapping map annotations.</p>
-	      <h4>Conclusions</h4>
-	      <p>This visual serves as a good exploratory visual analysis tool. The map is interactive and allows the user to zoom/scroll and view summary information for each dispute. From the initial full world view, we can see distinct "hot spots" that overshadow other areas of the world: Central America, the Middle East, and North/South Korean peninsula. This is tentatively consistent with our hypothesis: the countries in these areas have significantly less "power" than other regions of the world. This analysis is weak however: we have no measure of "power". Also, as mentioned above the fatality level tops out at 999, therefore for the heatmap observations containing 1,000,000 fatalities have the same influence as observations of 1000. Finally, MID v3.0 does not allocate fatalities per state, rather only by dispute. It is clear therefore that the current data will be insufficient for our analysis.</p>
-	      <h4>How Created</h4>
+	      <h4>Data</h4>
+          <p>Github API. Events. Real time.</p>
+          <h4>Visualizing stars</h4>
+          <p>What are we looking at.</p>
+          <h4>Conclusions</h4>
+          <p>Exploratory and fun.</p>
+          <h4>How Created</h4>
 	      <p>This visual was created using the following open-source libraries:
 		<ul>
-		  <li><a href="http://leafletjs.com/">Leaflet.js</a> - a JavaScript library for interactive maps</li>
-		  <li><a href="https://github.com/sunng87/heatcanvas">heatcanvas</a> - a JavaScript library for creating pixel based heatmaps with html5 canvas.</li>
-		  <li><a href="https://github.com/Leaflet/Leaflet.markercluster">Leaflet.markercluster</a> - provides beautiful animated marker clustering functionality for Leaflet</li>
+		  <li><a href="https://github.com/square/cube">Cube</a> - a system for collecting timestamped events and driving metrics</li>
+		  <li><a href="https://github.com/square/cubism">Cubism.js</a> - a JavaScript library for time series visualization</li>
+          <li><a href="http://d3js.org">D3</a> - data driven documents.
 		</ul>
 The map displayed uses a Spherical Mercator projection, the defaul projection provided by Leaflet.</p>
 	    </div>
