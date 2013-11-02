@@ -14,8 +14,8 @@ app.get('/', function(req, res){
   res.render('index_template', {});
 });
 
-app.get('/cubism', function(req, res){
-    res.render('cubism_template', {})
+app.get('/realtime', function(req, res){
+    res.render('cubeism_template', {})
 })
 
 var port = process.env.PORT || 5000;
