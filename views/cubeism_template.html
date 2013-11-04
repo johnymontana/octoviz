@@ -108,13 +108,41 @@ header {
 <script>
 
 var context = cubism.context()
-   .step(6e4)
+   .step(6e5)
    .size(1000);
 
 var cube = context.cube("http://23.239.1.42:1081");
 
-var horizon = context.horizon();
+var horizon = context.horizon()
+        .metric(function(d){return cube.metric("sum(match.eq(language,'" + d + "'))"); });
 
+var metrics = [
+    'Java',
+    'JavaScript',
+    'C++',
+    'Objective-C',
+    'C',
+    'Python',
+    'Shell',
+    'CSS',
+    'Ruby',
+    'Clojure',
+    'Go',
+    'PHP',
+    'Perl',
+    'C#',
+    'Erlang',
+    'Elixir',
+    'R',
+    'Julia',
+    'Rust',
+    'Objective-J',
+    'CoffeScript',
+    'TypeScript',
+    'GorillaScript',
+    'D'
+]
+/*
 var metrics = [
     cube.metric("sum(match.eq(language, 'Java'))"),
     cube.metric("sum(match.eq(language, 'JavaScript'))"),
@@ -139,6 +167,7 @@ var metrics = [
     cube.metric("sum(match.eq(language, 'CoffeeScript'))"),
     cube.metric("sum(match.eq(language, 'D'))")
 ];
+*/
 
     
 d3.select("body").selectAll(".axis")
