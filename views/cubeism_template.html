@@ -28,6 +28,7 @@ header {
 
 .axis text {
   -webkit-transition: fill-opacity 250ms linear;
+  font-weight: bold;
 }
 
 .axis path {
@@ -90,10 +91,12 @@ header {
 
 .horizon .title {
   left: 0;
+  font-weight: bold;
 }
 
 .horizon .value {
   right: 0;
+  font-weight: bold;
 }
 
 .line {
@@ -108,13 +111,13 @@ header {
 <script>
 
 var context = cubism.context()
-   .step(6e5)
+   .step(6e4)
    .size(1000);
 
 var cube = context.cube("http://23.239.1.42:1081");
 
 var horizon = context.horizon()
-        .metric(function(d){return cube.metric("sum(match.eq(language,'" + d + "'))"); });
+        .metric(function(d) {return cube.metric("sum(match.eq(language, '" + d + "'))"); });
 
 var metrics = [
     'Java',
@@ -137,7 +140,7 @@ var metrics = [
     'Julia',
     'Rust',
     'Objective-J',
-    'CoffeScript',
+    'CoffeeScript',
     'TypeScript',
     'GorillaScript',
     'D'
