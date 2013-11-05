@@ -57,8 +57,8 @@
     </div>
 <script>
 
-var width = 3000,
-    height = 3000,
+var width = 1200,
+    height = 1200,
     fill = d3.scale.category20();
 
 var svg = d3.select("body").append("svg")
@@ -66,12 +66,12 @@ var svg = d3.select("body").append("svg")
     .attr("height", height);
 
 var force = d3.layout.force()
-    .gravity(.10)
-    .distance(100)
-    .charge(-500)
+    .gravity(.75)
+    .distance(5)
+    .charge(-250)
     .size([width, height]);
 
-d3.json("force_owned_language_personal.json", function(json) {
+d3.json("force_starred_repos_personal.json", function(json) {
   force
       .nodes(json.nodes)
       .links(json.links)

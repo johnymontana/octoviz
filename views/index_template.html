@@ -3,7 +3,7 @@
 <html>
   <head>
 
-    !-- Latest compiled and minified CSS -->
+  <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!-- Optional theme -->
@@ -11,10 +11,6 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-<script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 
 
@@ -77,7 +73,7 @@
       <div id="myTabContent" class="tab-content">
 
         <div class="tab-pane fade in active" id="overview">
-          <p>This project explores network data from Github.</p>
+          <p>This project explores network data from Github. What is github. Github as a social network. Diagram of possible interactions. Brief info about github API. </p>
 
 	</div>
 
@@ -160,122 +156,69 @@
   
         <div class="tab-pane fade" id="vis_2">
         
-	  <h3></h3>
-	   Source: Correlates of War <a href="http://www.correlatesofwar.org/COW2%20Data/WarData_NEW/WarList_NEW.html">Interstate War Data v4.0</a> and <a href="http://www.correlatesofwar.org/COW2%20Data/Capabilities/nmc4.htm">National Material Capabilities Index</a>
+	  <h3>Github users and their starred repositories</h3>
+	   Source: <a href="http://developer.github.com/v3">Githup API v3</a>
 
-
-	  <p><iframe style="border: 0px;" src="/viz2" height="550" width="1000" scrolling="no"></iframe></p>
+       <p><a href="/star_repo" target="_blank">Top 15 Github contributors (will open in new tab/window)</a></p>
+	  <p><iframe style="border: 0px;" src="/star_repo_personal" height="800" width="1000" scrolling="yes"></iframe></p>
 	  <div class="panel panel-primary">
 	    <div class="panel-heading">
 	      <h3 class="panel-title">About Visual #2</h3>
 	    </div>
 	    <div class="panel-body">
 	      <h4>Dataset</h4>
-	      <p>This visual makes use of v4.0 of the Correlates Of War inter-state war data. Unlike v3.10 (used in Visual #1), this dataset contains number of battle related fatalities per country for interstate militarized disputes from 1816-2007. We also introduce a measure of the "power" of a country: the National Material Capabilities Index. This index is composed of a composite of six variables: iron and steel production, military expenditures, military personnel, energy consumption, total population and urban population for each country. This index will serve as a proxy for the power of a country for the remainder of our analysis. </p>
-	      <h4>Crossfilter map</h4>
-	      <p>This visual consists of an interactive map with a colored overlay corresponding to one of three variables: the National Capabilites Index score, average fatalities per war or average fatalities per war per military personnel. The crossfilter box for each variable shows the distribution of the variable among the observations, but also allows the user to filter the observations by selecting a range for each variable. This provides an interactive tool to explore our hypothesis: by selecting the lower range on the National Capability index Crossfilter tool, we should expect to see observations filtered with relatively high fatalities. Conversely, by filtering at the high end of average fatalities, we should expect to see countries at the low end of the National Capability Index distribution. And indeed, by doing this filtering we see some evidence that supports our hypothesis.</p> 
-	     <p> While this visual provides some evidence consistent with our hypothesis, this method of analysis does not quantify the correlation we are attempting to examine. A different visual analysis technique should be applied to the data. Also problematic, the time dimension is removed from this analysis: all data has been averaged across observations. Since the size of a country's military and its score on the National Capabilites Index changes through time it would be much more useful to observe the relationship between fatalities and the National Capabilities Index at a specific time, rather than across a time average. We explore such an analysis in the next two visuals.</p>
-
-	      <h4>How Created</h4>
-	      <p>The following open-source libraries were used: 
-		<ul>
-		  <li><a href="http://leafletjs.com/">Leaflet.js</a>- JavaScript library for interactive maps</li>
-		  <li><a href="http://square.github.io/crossfilter/">Crossfilter</a>- fast multidimensional filtering for coordinated views</li>
-		  <li><a href="http://d3js.org/">D3</a>- Data Driven Documents</li>
-		  <li><a href="https://github.com/crcn/sift.js">Sift.js</a>- MongoDB inspired array filtering</li>
-		</ul>
-The map in this visual was created using a Spherical Mercator projection, the default projection availabe with Leaflet.
-
-		</p>
+          <p>Traversal of my github social network (friends / followers). Starred repos. Uses github API.</p>
+          <h4>About Visual</h4>
+          <p>Created with D3 force directed layout. Exploratory. Other implementation details.</p>
+	      <h4>Analysis</h4>
+          <p>Ego-like graphs with few nodes sharing multiple edges.</p>
 	  </div>
 	  </div> 
 
 	</div> <!-- / .tab-pane -->
 
 	<div class="tab-pane fade" id="vis_3">
-	  <h3>Fatalities vs National Capabilities Index</h3>
-	  Source: Correlates Of War <a href="http://www.correlatesofwar.org/COW2%20Data/Capabilities/nmc4.htm">National Material Capabilities v4.0</a> and <a href="http://www.correlatesofwar.org/COW2%20Data/WarData_NEW/WarList_NEW.html">Interstate War Data v4.0</a> | size of circle = military personnel
+	  <h3>Github users and their starred repositories, by language</h3>
+      Source: <a href="http://developer.github.com/v3">Githup API v3</a>
+      
+      <p>Personal network<iframe style="border: 0px;" src="/star_lang_personal" height="700" width="1000" scrolling="yes"></iframe></p> 
+      <br>
+      <p>Top 20 Github contributors<iframe style="border: 0px;" src="/star_lang" height="700" width="1000" scrolling="yes"></iframe></p>
 
-	  <iframe style="border: 0px;" src="/viz4" height="550" width="900" scrolling="no"></iframe> 
-	  <div class="panel panel-primary">
+      
+      <div class="panel panel-primary">
 	    <div class="panel-heading">
 	      <h3 class="panel-title">About Visual #3</h3>
 	    </div>
 	    <div class="panel-body">
-		<table border="1" style="float: right;">
-		  <tr><th colspan=2>Regression Summary Stats</th></tr>
-		  <tr>
-		    <td><b>p-value:</b></td>
-		    <td>0.0003</td>
-		  </tr>
-		  <tr>
-		    <td><b>r^2:</b></td>
-		    <td>0.0403</td>
-		  </tr>
-		  <tr>
-		    <td><b>Slope: </b></td>
-		    <td>1742839.37</td>
-		  </tr>
-		  <tr>
-		    <td><b>Intercept: </b></td>
-		    <td>31011.72</td>
-		  </tr>
-	      </table>
-
 
 		<h4>Dataset</h4>
-		<p>This visual makes use of the same data shown in Visual #2, but in the form of a scatter plot. A data point is plotted for each state involved in each dispute. Summary information can be viewed by hovering over a data point.</p>
-
-		<h4>Conclusions</h4>
-		<p>A quick examination of the regression summary stats table shows the results are inconsistent with our hypothesis: fatalities are positively correlated with the National Capabilities Index score. The regression is statisticaly significant (p-value less than 0.05), however very little of the variation in fatalities is explained by the National Capabilities Index (low r-squared statistic). There is a significant mistake in this visual however: the number of fatalities is not adjusted to a per-capita value. It is likely that larger militaries experience greater fatalities per dispute simply becuase more members of the military are involved in fighting. Visual #4 takes this into account. It is also important to note tha by observing the sizes of the data points plotted (military personnel) we can see that military personnel is highly correlated with the National Capabilities Index. </p>
-
-		<h4>How Created</h4>
-		<p>This visual was created using <a href="http://www.d3js.org">D3.</a> Regression analysis was done using Python SciPy.</p>
-	     	 
-
-	    </div>
+        <p>Same data as Viz 2, but broken up by language. </p>
+		<h4>Analysis</h4>
+	    <p>Appear to be two classes of languages: common language with edges to many user nodes, and many uncommon langues with few edges.</p>  
+      </div>
 	  </div>
 
 	</div> <!-- /.tab-pane -->
 
 	<div class="tab-pane fade" id="vis_4">
-	   <h3>Fatalities vs National Capabilities Index</h3>
-	  Source: Correlates Of War <a href="http://www.correlatesofwar.org/COW2%20Data/Capabilities/nmc4.htm">National Material Capabilities v4.0</a> and <a href="http://www.correlatesofwar.org/COW2%20Data/WarData_NEW/WarList_NEW.html">Interstate War Data v4.0</a> | size of circle = number of fatalities
+	   <h3>Github users and their owned repositories, by language</h3>
+        Source: <a href="http://developer.github.com/v3">Githup API v3</a>
+	    <p>Personal network<iframe style="border: 0px;" src="/own_lang_personal" height="700" width="1000" scrolling="yes"></iframe></p> 
+      <br>
+      <p>Top 20 Github contributors<iframe style="border: 0px;" src="/own_lang" height="700" width="1000" scrolling="yes"></iframe></p>
 
-	  <iframe style="border: 0px;" src="/viz3" height="550" width="900" scrolling="no"></iframe> 
 	  <div class="panel panel-primary">
 	    <div class="panel-heading">
 	      <h3 class="panel-title">About Visual #4</h3>
 	    </div>
 	    <div class="panel-body">
 	      
-	<table border="1" style="float: right;">
-		  <tr><th colspan=2>Regression Summary Stats</th></tr>
-		  <tr>
-		    <td><b>p-value:</b></td>
-		    <td>0.1107</td>
-		  </tr>
-		  <tr>
-		    <td><b>r^2:</b></td>
-		    <td>0.0079</td>
-		  </tr>
-		  <tr>
-		    <td><b>Slope: </b></td>
-		    <td>-1.9471</td>
-		  </tr>
-		  <tr>
-		    <td><b>Intercept: </b></td>
-		    <td>0.4499</td>
-		  </tr>
-	      </table>
-	
-
 		<h4>Dataset</h4>
-		<p>This visual is similar to Visual #3, however the number of fatalities is adjusted by dividing the size of the state's military at the sime oof the dispute. </p>
-
-		<h4>Conclusions</h4>
-		<p>We can now see a slight negative correlation between fatalities per military personnel and the National Capabilities Index. However, the regression statistics show this result is not statistically significant. There is also an important problem: by adjusting fatalities by the size of the military we have introduced cross correlation into our regression. Since size of the military is highly correlated with the National Capabilities Index (as we saw in Visual #3, and indeed number of military personnel is a component of the Index) we have possibly contaminated the results by introducing this cross correlation. Overall results seem to be inconclusive, a better model should be used for this analysis.</p>
-	    </div>
+        <p>Similar data, but now showing repos owned by users instead of starred. </p>
+		<h4>Analysis and conclusions</h4>
+        <p>Similar language distribution. Need more data with more interactions.</p> 
+      </div>
 	  </div>
 
 	</div> <!-- /.tab-pane -->
@@ -285,81 +228,14 @@ The map in this visual was created using a Spherical Mercator projection, the de
 
 
 	<div class="tab-pane fade" id="analysis">
-	   <h3>Map Projections</h3>
-	  Source:  <a href="http://bl.ocks.org/mbostock/3711652">This demo</a> was created by <a href="http://bost.ocks.org/mike/">Mike Bostock</a> to showcase the map projections available in <a href="http://www.d3js.org">D3</a>
-	 
- <iframe style="border: 0px;" src="/project" height="550" width="1000" scrolling="no"></iframe> 
-	    <h4>Mercator</h4>
-	    <p>Visuals #1 and #2 both were displayed using a Mercator projection. The Mercator projection has a long history (first presented in 1569) and gained initial popularity because of properties that made it particularly convenient for nautical navigation (by representing rhumb lines, or a line crossing all meridans or longitude at the same angle - in nautical terms a bearing - as stright lines). The Mercator projection significantly distorts the map projection at the poles, however.</p>
-
-	    <p>
-	      <b>Projection formulas</b>
-	      <ul>
-		<li>\(x = \lambda - \lambda_0\)</li>
-		<li>\(y - \ln(\tan(\phi)+\sec(\phi)) \)</li>
-		<li>where: \(\phi\) is the latitude and \(\lambda\) is the longitude </li>
-	      </ul>
-
-	      <b>Inverse formulas</b>
-	      <ul>
-		<li>\(\phi = \tan^{-1}(\sinh(y))\)</li>
-		<li>\(\lambda = x + \lambda_0 \)</li>
-	      </ul>
-
-  
-	    </p>
-	    <h4>Lambert-Azimuthal Equal-Area Projection</h4>
-	    <p>The polar perspective of the Lambert-Azimuthal is used for the United Nations logo. The entire Earth can be viewed, however angular distortions are extremely bad at the edges.</p>
-
-	    <b>Projection formulas</b>
-	      <ul>
-		<li>\(x = k^{'}\cos(\phi)\sin(\lambda-\lambda_0)\)</li>
-		<li>\(y = k^{'}(\cos(\phi_1)\sin(\phi)-\sin(\phi_1)\cos(\phi)\cos(\lambda-\lambda_0)) \)</li>
-		<li>where: \( k^{'}=\sqrt{\frac{2}{(1+\sin(\phi_1)\sin(\phi)+\cos(\phi_1)\cos(\phi)\cos(\lambda-\lambda_0))}}\) </li>
-	      </ul>
-
-	      <b>Inverse formulas</b>
-	      <ul>
-		<li>\(\phi = \sin^{-1}(\cos(c)\sin(\phi_1)+ \frac{(y\sin(c)\cos(\phi_1))}{\rho}) \)</li>
-		<li>\(\lambda = \lambda_0+\tan^{-1}(\frac{(x\sin(c))}{(\rho\cos(\phi_1)\cos(c)-y\sin(\phi_1)\sin(c))}) \)</li>
-		<li>where \( \rho = \sqrt{x^2+y^2} \)</li>
-		<li>and \( c = 2\sin^{-1}(\frac{1}{2}\rho)\)</li>
-	      </ul>
-
-	
-	    <h4>Hammer</h4>
-	    <p>The Hammer projection is an extension of the Lambert-Azimuthal projection which attempts to reduce the distortion toward the outer edges, where angual distortions are particularly bad. This extension involves an intermediate transformation by halving the vertical coordinates and doubling the values of the meridians from the center.</p>
-	    <b>Projection formulas</b>
-	      <ul>
-		<li>\(x = \frac{2\sqrt{2}\cos(\phi)\sin(\frac{\lambda}{2})}{\sqrt{1+\cos(\phi)\cos(\frac{\lambda}{2})}}\)</li>
-		<li>\( y = \frac{\sqrt 2\sin(\phi)}{\sqrt{1 + \cos(\phi) \cos\left(\frac\lambda 2\right)}}\)</li>
-		<li>where: \(\phi\) is the latitude and \(\lambda\) is the longitude </li>
-	      </ul>
-
-	      <b>Inverse formulas</b>
-	    The inverse is calculated with the intermediate variable z
-	      <ul>
-		<li>\(z = \sqrt{1 - \left(\frac1 4 x\right)^2 - \left(\frac1 2 y\right)^2}\)</li>
-		<li>\(\lambda = 2 \arctan \left[\frac{zx}{2(2z^2 - 1)}\right]\)</li>
-		<li>\(\phi = \arcsin(zy) \)</li>
-	      </ul>
-
-	      <h4>References</h4>
-	      <p>
-		<ul>
-		  <li>http://en.wikipedia.org/wiki/Mercator_projection</li>
-		  <li>http://mathworld.wolfram.com/MercatorProjection.html</li>
-		  <li>http://www.progonos.com/furuti/MapProj/Normal/CartHow/HowAzEqDA/howAzEqDA.html</li>
-		  <li>http://lazarus.elte.hu/~guszlev/vet/plane.htm</li>
-		  <li>http://en.wikipedia.org/wiki/Lambert_azimuthal_equal-area_projection</li>
-		  <li>http://mathworld.wolfram.com/LambertAzimuthalEqual-AreaProjection.html</li>
-		  <li>http://mathworld.wolfram.com/Hammer-AitoffEqual-AreaProjection.html</li>
-		  <li>http://en.wikipedia.org/wiki/Hammer_projection</li>
-		</ul>
-	      </p>
-
-
-
+	   <h3>Analysis And Conclusions</h3>
+       <h4>Power Law Analysis</h4>
+        <h5>Plots</h5>
+        <p>Plots showing log/log frequency of edges</p>
+        <h5>Conclusions</h5>
+        <p>What is the power law exponent? Does the distribution make sense?</p>
+      <h4>Conclusions</h4>
+        Did we prove my hypothesis? Why not? More data?
 	</div>
       </div> <!-- /.tab-content-->
 
