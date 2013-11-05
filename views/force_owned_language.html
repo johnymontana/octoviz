@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D3 force layout</title>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+
+    .link {
+      stroke: #ccc;
+    }
+
+    .node text {
+      pointer-events: none;
+      font: 10px sans-serif;
+    }
+
+    .tooltip {
+        position: absolute;
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        background-color: gray;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        pointer-events: none;
+}
+
+.hidden {
+        display: none;
+}
+
+.tooltip p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="chart"></div>
+    <div id="tooltip" class="hidden tooltip">
+        <p id="title"><strong>Important Label Heading</strong></p>
+        <p><span id="value">100</span></p>
+    </div>
+    <div id="tooltip_user" class="tooltip hidden">
+        <p id="title"><strong>User Name here</strong></p>
+        <p><span id="img"></span></p>
+        <p><span id="location"></span></p>
+
+    </div>
+<script>
+
+var width = 3000,
+    height = 3000,
+    fill = d3.scale.category20();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var force = d3.layout.force()
+    .gravity(.10)
+    .distance(100)
+    .charge(-500)
+    .size([width, height]);
+
+d3.json("force_owned_language.json", function(json) {
+  force
+      .nodes(json.nodes)
+      .links(json.links)
+      .start();
+
+  var link = svg.selectAll(".link")
+      .data(json.links)
+    .enter().append("line")
+      .attr("class", "link");
+
+  var color = d3.scale.category20();
+
+  var node = svg.selectAll(".node")
+      .data(json.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .call(force.drag);
+
+  node.append("circle")
+      .attr("r", 4)
+      .style("fill", function(d) { return color(d.id == "me" ? 1 : 2); });
+
+  node.append("text")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
+      .text(function(d) { 
+              if (d.type === 'user'){
+                return d.id;
+            }
+            else {
+                return null;
+            }
+            });
+
+
+  node.on("click", function(d) {
+
+    d3.select("#tooltip").classed('hidden', true);
+    d3.select("#tooltip_user").classed('hidden', true);
+
+
+    console.log(d);
+    //Get this bar's x/y values, then augment for the tooltip
+    //var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2;
+    //var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
+
+    var xPosition = d.x;//parseFloat(d3.select(this).attr("x"));
+    var yPosition = d.y;//parseFloat(d3.select(this).attr("y"));
+    //var yPosition = 100;
+
+    //Update the tooltip position and value
+    if (d.type === 'user'){
+        console.log('selected user');
+        d3.select("#tooltip_user")
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px")
+            .select("#title")
+            .text(d.id)
+
+            d3.select("#img")
+            .html("<img src='" + d.avatar +"' width=75>");
+
+            d3.select("#location")
+                .text(d.location);
+
+        d3.select("#tooltip_user")
+        .classed("hidden", false);
+
+    }
+    else {
+        d3.select("#tooltip")
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px")
+        .select("#value")
+        .text(d.id);
+
+        //Show the tooltip
+        d3.select("#tooltip").classed("hidden", false);
+    }
+    });
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  });
+});
+
+</script>
+
+  </body>
+</html>
