@@ -77,7 +77,7 @@
           <p>
           <figure>
             <img src="/img/github_interactions.png" width=700 />
-          <figcaption>Source: <a href="http://www.stanford.edu/class/cs224w/upload/cs224w-015-final.pdf">SAGH: Social Analysis Of Github</a></figcaption>
+          <figcaption>Entity-Relationship diagram for Github. Source: <a href="http://www.stanford.edu/class/cs224w/upload/cs224w-015-final.pdf">SAGH: Social Analysis Of Github</a></figcaption>
         </figure></p>
 
 
@@ -139,10 +139,14 @@
 	    </div>
 	    <div class="panel-body">
 	      <h4>Data</h4>
-          <p>Github API. Events. Real time.</p>
+          <p>This graph makes use of the Github Public Timelime Event API to show starred repositories on Github, grouped by programming language. Each time a Github user stars a repository, it is captured in real-time. Each new star is essentially a new edge in our network data graph, so it is important to understand the general rate at which these edges are being created and some approximation of the distribution across languages. The chart is updated in real-time and plotted using 5-minute intervals. For smoothing, a 24 observation moving average is calculated and used for plotting. This results in a 2 hour (24 observations * 5 minute interval) window for the smoothing. </p>
           <h4>Horizon Chart</h4>
-          <p><img src="/img/horizon.png"/>What are we looking at.</p>
-          <p><a href="http://vis.berkeley.edu/papers/horizon/">Paper about horizon chart</a></p>
+          <p>
+          
+          <figure><img src="/img/horizon.png"/>
+            <figcaption>Horizon Chart explanation. Source: <a href="http://vis.berkeley.edu/papers/horizon/">here</a></figcaption>
+            </figure>
+            This graph makes use of a type of chart known as the Horizon Chart. This <a href="http://vis.berkeley.edu/papers/horizon/">paper </a> describes the Horizon Chart and cites the work of Edward Tufte (specifically small multiples and the data/ink ratio) and Cynthia Brewer (known for her work on color theory in cartography). The Horizon Chart reduces the use of vertical space without losing resolution by overplotting larger values in successively darker colors.  </p>
           <h4>Analysis</h4>
           <p>It is important to note that values for each language are plotted on an independently scaled y-axis and therefore values should not be compared across languages, rather relative values should be compared across languages. Changes in the number of repositories starred are most easily identified by changes in the coloring and height of the horizon line. It is interesting to note that there appears to be a spike across several languages at approximately 2am each weekday. It would be interesting to gather data on which specific projects were being starred at certain time intervals and the distribution of unique repos being starred. Are the spikes due to a popular news/blog post generating buzz for a specific project? This data would most likely be more useful if plotted over a longer time interval, however due to data collection complications this was not explored for this visual.</p>
           <h4>How Created</h4>
@@ -173,7 +177,7 @@
           <h4>Alternate Visual</h4>
           <p><a href="/star_repo" target="_blank">Top 15 Github contributors (will open in new tab/window)</a> <br> This visual uses similar data as the visual embedded above, however it examines the Github accounts of the top 15 Github contributors during the past 12 months.</p>
 	      <h4>Dataset</h4>
-          <p>The visual displayed above uses data from the traversal of my Github social network (friends and followers). A node is created for each friend or follower. For each user node, additional nodes are created for each starred repository, with an edge from the repository node to the user node of the user who starred that repository. Repository nodes with more than one edge show that multiple users have starred the same repository. The Alternate Visual linked to above uses similar data, but rather than a traversal of my Github social network, relies on data from the top Github contributors.</p>
+          <p>The visual displayed above uses data from the traversal of my Github social network (friends and followers). A node is created for each friend or follower (user nodes). For each user node, additional nodes are created for each starred repository, with an edge from the repository node to the user node of the user who starred that repository. Repository nodes with more than one edge show that multiple users have starred the same repository. The Alternate Visual linked to above uses similar data, but rather than a traversal of my Github social network, relies on data from the top Github contributors.</p>
           <h4>About Visual</h4>
           <p>This visual was creating using D3 Javascript library. It uses a force directed layout to position each node. The forces being simulated are a repulsive charge (all nodes) and an attractive force between connected nodes. This results in nodes with similar edges being grouped together on the graph and nodes with dissimilar connections being pused away to the edges of the visual. reated with D3 force directed layout. Additional information about each node is available by clicking on the node.</p>
 	      <h4>Analysis</h4>
@@ -212,7 +216,7 @@
 	    <p>Personal network
         <br><iframe style="border: 1px;" src="/own_lang_personal" height="700" width="1000" scrolling="yes"></iframe></p> 
       <br>
-      <p>Top 20 Github contributors
+      <p>Top Github contributors
       <br><iframe style="border: 1px;" src="/own_lang" height="700" width="1000" scrolling="yes"></iframe></p>
 
 	  <div class="panel panel-primary">
