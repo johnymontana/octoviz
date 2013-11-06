@@ -17,7 +17,7 @@
 
     .tooltip {
         position: absolute;
-        width: 200px;
+        width: auto;
         height: auto;
         padding: 10px;
         background-color: gray;
@@ -53,7 +53,15 @@
         <p id="title"><strong>User Name here</strong></p>
         <p><span id="img"></span></p>
         <p><span id="location"></span></p>
+        <p><span id="bio"</span></p>
+        <p><span id="link"></span></p>
+    </div>
 
+    <div id="tooltip_repo" class="tooltip hidden">
+        <p id="title"><strong>Repo Name here</strong></p>
+        <p><span id="lang"></span></p>
+        <p><span id="desc"></span></p>
+        <p><span id="url"></span></p>
     </div>
 <script>
 
@@ -111,6 +119,7 @@ d3.json("force_starred_repos_personal.json", function(json) {
 
     d3.select("#tooltip").classed('hidden', true);
     d3.select("#tooltip_user").classed('hidden', true);
+    d3.select("#tooltip_repo").classed('hidden', true);
 
 
     console.log(d);
@@ -129,7 +138,7 @@ d3.json("force_starred_repos_personal.json", function(json) {
             .style("left", xPosition + "px")
             .style("top", yPosition + "px")
             .select("#title")
-            .text(d.id)
+            .html("<strong>" + d.id + "</strong>")
 
             d3.select("#img")
             .html("<img src='" + d.avatar +"' width=75>");
@@ -137,9 +146,34 @@ d3.json("force_starred_repos_personal.json", function(json) {
             d3.select("#location")
                 .text(d.location);
 
+            d3.select("#bio")
+                .text(d.bio);
+
+
         d3.select("#tooltip_user")
         .classed("hidden", false);
 
+    }
+    
+    else if (d.type === 'repo') {
+        console.log('selected repo');
+        d3.select("#tooltip_repo")
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px")
+            .select("#title")
+            .html("<strong>" + d.id + "</strong>");
+
+        d3.select("#lang")
+            .text(d.lang);
+
+        d3.select("#desc")
+            .text(d.desc);
+
+        d3.select("#url")
+            .html("<p><a href='" + d.url + "'>" + d.url + "</a></p>");
+
+        d3.select("#tooltip_repo")
+            .classed("hidden", false);
     }
     else {
         d3.select("#tooltip")

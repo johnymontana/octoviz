@@ -17,7 +17,7 @@
 
     .tooltip {
         position: absolute;
-        width: 200px;
+        width: auto;
         height: auto;
         padding: 10px;
         background-color: gray;
@@ -53,12 +53,20 @@
         <p id="title"><strong>User Name here</strong></p>
         <p><span id="img"></span></p>
         <p><span id="location"></span></p>
-
+        <p><span id="bio"></span></p>
     </div>
+
+    <div id="tooltip_repo" class="tooltip hidden">
+        <p id="title"><strong>Repo Name here</strong></p>
+        <p><span id="lang"></span></p>
+        <p><span id="desc"></span></p>
+        <p><span id="url"></span></p>
+    </div>
+
 <script>
 
 var width = 1000,
-    height = 700,
+    height = 500,
     fill = d3.scale.category20();
 
 var svg = d3.select("body").append("svg")
@@ -71,7 +79,7 @@ var force = d3.layout.force()
     .charge(-500)
     .size([width, height]);
 
-d3.json("force_owned_language_personal.json", function(json) {
+d3.json("force_starred_language_personal.json", function(json) {
   force
       .nodes(json.nodes)
       .links(json.links)
@@ -111,6 +119,7 @@ d3.json("force_owned_language_personal.json", function(json) {
 
     d3.select("#tooltip").classed('hidden', true);
     d3.select("#tooltip_user").classed('hidden', true);
+    d3.select("#tooltip_repo").classed('hidden', true);
 
 
     console.log(d);
@@ -129,7 +138,7 @@ d3.json("force_owned_language_personal.json", function(json) {
             .style("left", xPosition + "px")
             .style("top", yPosition + "px")
             .select("#title")
-            .text(d.id)
+            .html("<strong>" + d.id + "</strong>");
 
             d3.select("#img")
             .html("<img src='" + d.avatar +"' width=75>");
