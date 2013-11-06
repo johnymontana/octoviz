@@ -15,7 +15,7 @@
 
 
 
-    <title>CSCI 444 Project 3 - Geo Data</title>
+    <title>Octoviz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
 
@@ -71,20 +71,23 @@
 
     </ul>
       <div id="myTabContent" class="tab-content">
-
+      
         <div class="tab-pane fade in active" id="overview">
+          <strong>Note: This page will take several moments to load and may become unresponsive while rendering. Please be patient. </strong>
+          <p>
           <figure>
             <img src="/img/github_interactions.png" width=700 />
           <figcaption>Source: <a href="http://www.stanford.edu/class/cs224w/upload/cs224w-015-final.pdf">SAGH: Social Analysis Of Github</a></figcaption>
-	      </figure>
+        </figure></p>
 
-          <p>This project explores network data from Github. What is github. Github as a social network. Diagram of possible interactions. Brief info about github API.</p>
+
+          <p>This project explores network data from Github. Github is web service that allows software developers to collaborate on and share open source software projects. It is focused on the git version control system: a hub for git repositories. Github has gradually added user interaction features that effectively make Github a social network. This is consistent with their tagline "Github: Social Coding". The entity-relationship diagram above shows all Github entities and the possible relationships amongst them. Our current analysis will focus on the user and repository (project) entities and the "starred" relationship between users and repositories. Starring is a method of a user indicating interest in a repository. This is analogous to a favorite or like in other social networks. Github maintains an API which makes the retrieval of these entities and relationships relatively straight forward.</p>
                     
         </div>
 
 
 	<div class="tab-pane fade" id="hypothesis">
-      <br><p>Hypothesis is existence of language clusters.</p>
+      <br><p>This project will explore the relationship between users and repositories on Github. Particularly I am interested in exploring ways to visualize the distribution of different programming languages being used on Github and the user interactions of developers in the context of the languages they use.</p>
       <div class="panel panel-info">
 	    <div class="panel-heading">
 	      <h3 class="panel-title">Hypothesis</h3>
@@ -140,8 +143,8 @@
           <h4>Horizon Chart</h4>
           <p><img src="/img/horizon.png"/>What are we looking at.</p>
           <p><a href="http://vis.berkeley.edu/papers/horizon/">Paper about horizon chart</a></p>
-          <h4>Conclusions</h4>
-          <p>Exploratory and fun.</p>
+          <h4>Analysis</h4>
+          <p>It is important to note that values for each language are plotted on an independently scaled y-axis and therefore values should not be compared across languages, rather relative values should be compared across languages. Changes in the number of repositories starred are most easily identified by changes in the coloring and height of the horizon line. It is interesting to note that there appears to be a spike across several languages at approximately 2am each weekday. It would be interesting to gather data on which specific projects were being starred at certain time intervals and the distribution of unique repos being starred. Are the spikes due to a popular news/blog post generating buzz for a specific project? This data would most likely be more useful if plotted over a longer time interval, however due to data collection complications this was not explored for this visual.</p>
           <h4>How Created</h4>
 	      <p>This visual was created using the following open-source libraries:
 		<ul>
@@ -149,6 +152,8 @@
 		  <li><a href="https://github.com/square/cubism">Cubism.js</a> - a JavaScript library for time series visualization</li>
           <li><a href="http://d3js.org">D3</a> - data driven documents.
 		</ul>
+        A server process is constantly running to consume the Github Public Timeline Event API. Each event is inserted into mongoDB on the server. When the webpage is loaded a WebSocket connection is established between the client and server to populate the graph. The WebSocket connection is maintained to allow for continuous real-time updates of the graph (in this case in 5-minute intervals).
+          </p>
 	    </div>
 	  </div>
 	</div> <!-- /.tab-pane -->
@@ -172,7 +177,7 @@
           <h4>About Visual</h4>
           <p>This visual was creating using D3 Javascript library. It uses a force directed layout to position each node. The forces being simulated are a repulsive charge (all nodes) and an attractive force between connected nodes. This results in nodes with similar edges being grouped together on the graph and nodes with dissimilar connections being pused away to the edges of the visual. reated with D3 force directed layout. Additional information about each node is available by clicking on the node.</p>
 	      <h4>Analysis</h4>
-          <p>This visual shows Ego-like graphs with few nodes sharing multiple edges.</p>
+          <p>This graphic shows several repository nodes focused around individual user nodes: the repositories that particular user has starred. The interesting nodes are those starred by multiple users. These nodes can be identified as those with multiple edges. The force directed layout has the effect of pulling these nodes out of the cluster associated with a single user and into a cluster of nodes shared by two or more users. </p>
 	  </div>
 	  </div> 
 
@@ -183,7 +188,7 @@
       Source: <a href="http://developer.github.com/v3">Githup API v3</a>
       
       <br>
-      <p>Top 20 Github contributors<br><iframe style="border: 1px;" src="/star_lang" height="700" width="1000" scrolling="yes"></iframe></p>
+      <p>Top Github contributors<br><iframe style="border: 1px;" src="/star_lang" height="700" width="1000" scrolling="yes"></iframe></p>
 
       
       <div class="panel panel-primary">
@@ -217,9 +222,9 @@
 	    <div class="panel-body">
 	      
 		<h4>Dataset</h4>
-        <p>Similar data, but now showing repos owned by users instead of starred. </p>
-		<h4>Analysis and conclusions</h4>
-        <p>Similar language distribution. Need more data with more interactions.</p> 
+        <p>Similar data, but now showing repositories owned (typically created by) by users instead of starred. </p>
+		<h4>Analysis</h4>
+        <p>The grouping of languages here is very similar to that in Visual #3. We again see two classes of languages: commonly used languages in the center and less common languages pushed to the edge of the graph.</p> 
       </div>
 	  </div>
 
@@ -260,9 +265,17 @@
 		  </tr>
 	      </table>
         <h5>Conclusions</h5>
-        <p>What is the power law exponent? Does the distribution make sense?</p>
+        <p>In terms of the power law distribution, this analysis shows that many repositories are starred by one user (in our sample) and few repositories are starred by multiple users. This makes sense in the context of our data, but it would also be interesting to include <strong>all</strong> stars per repository and not just the stars of users in our sample. This would be a more consistent comparison with the standard popularity power law function.</p>
       <h4>Conclusions</h4>
-        Did we prove my hypothesis? Why not? More data?
+      <p>Most of the evidence presented in the visualizations appears to be inconsistent with our hypothesis. Rather than ego-type network patterns, with many developers focused around one or two languages, we observed many developers using many different languages.  Further analysis could be done to examine the hypothesis: 
+      <ul>
+        <li>Edges could be weighted according to number of contributions in a specific language</li>
+        <li>Data on more users could be collected to extend the dataset</li>
+        <li>Data on more user interactions (contributions, following, pull requests, forking, branching, etc ) all with different edge weights according to their relative significance would be particularly imformative</li>
+
+    </ul>
+
+        </p>
 	</div>
       </div> <!-- /.tab-content-->
 
